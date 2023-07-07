@@ -17,7 +17,7 @@ function Acceso() {
         axios.post('http://localhost:8082/acceso', campos)
             .then(respuesta => {
                 if (respuesta.data.Estatus === "CORRECTO") {
-                    localStorage.setItem('usuario', respuesta.data)
+                    localStorage.setItem('usuario', respuesta.data.token);
                     navegacion('/');
                 } else {
                     setError(respuesta.data.Error);
@@ -26,7 +26,7 @@ function Acceso() {
             .catch(error => console.log("hay un error"));
     }
     return (
-        <>
+       <> 
             <form onSubmit={acceder}>
                 <input type='email' placeholder='Email' name="correo_electronico" 
                 onChange={(e)=>setCampos({...campos,correo_electronico:e.target.value})} />
@@ -35,8 +35,14 @@ function Acceso() {
                  onChange={(e)=>setCampos({...campos,contrasenia:e.target.value})} />
                 <button type='submit' >Ingresar</button>
             </form>
+
+
+
+
         </>
 
+        
     )
+
 }
 export default Acceso;

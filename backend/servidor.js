@@ -6,7 +6,7 @@ import jwt from 'jsonwebtoken';
 //crear la instancia de express
 
 const app = express();
-
+app.use(express.json());
 app.use(cors());
 const conexion = mysql.createConnection({
     server: 'localhost',
@@ -40,12 +40,22 @@ app.post('/acceso', (peticion, respuesta) => {
         (error,resultado) => {
             if(error) return respuesta.json({mensaje:"error"})
             if(resultado.length>0){
-                const token=jwt.sign({usuario:administrador},'coto',{expiresIn:'1d'});
+                const token=jwt.sign({usuario:'administrador'},'coto',{expiresIn:'1d'});
                 respuesta.cookie(token);
                return respuesta.json({Estatus:"CORRECTO",Usuario:token})
             } else{
                 return respuesta.json({Estatus:"ERROR",Error:"usuario o contraseña incorrecta"});
             }
+        })
+})
+// registro
+app.post('/registro', (peticion, respuesta) => {
+    const sql = "insert into usuarios(nombre_usuario, correo_electronico,contrasenia) values(?,?,?) ";
+    console.log(peticion.body);
+    conexion.query(sql, [peticion.body.nombre_usuario,peticion.body.correo_electronico, peticion.body.contrasenia],
+        (error,resultado) => {
+            if(error) return respuesta.json({mensaje:"error"})
+            return respuesta.json({ Estatus: "CORRECTO"});
         })
 })
 
