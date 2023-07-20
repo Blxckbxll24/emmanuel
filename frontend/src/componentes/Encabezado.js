@@ -22,10 +22,11 @@ const salir=()=>{
             <Link to='/nosotros'>Nosotros</Link>
             <Link to='/categorias'>Categoria</Link>
             <Link to='/contacto'>IContacto</Link>
+            <Link to='/agregarmascota'>agregarMascota</Link>
             {
                 login ?
                 <>
-                <a onClick={salir}>Salir</a>
+                <Link onClick={salir}>Salir</Link>
                 </>
                 :
                 <>

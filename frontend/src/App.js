@@ -1,4 +1,4 @@
-import logo from './logo.svg';
+
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import {BrowserRouter,Route,Routes } from 'react-router-dom';
@@ -8,6 +8,7 @@ import Categoria from './paginas/Categoria';
 import Contacto from './paginas/Contacto';
 import Acceso from './paginas/Acceso';
 import Registro from './paginas/Registro1';
+import AgregarMascota from './paginas/AgregarMascota';
 
 
 function App() {
@@ -20,6 +21,7 @@ function App() {
       <Route path='/contacto' element={<Contacto/>}></Route>
       <Route path='/acceso' element={<Acceso/>}></Route>
       <Route path='/registro' element={<Registro/>}></Route>
+      <Route path='/agregarmascota' element={<AgregarMascota/>}></Route>
 
     </Routes>
     </BrowserRouter>
